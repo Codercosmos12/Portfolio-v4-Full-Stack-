@@ -1,287 +1,141 @@
-import React, { useState } from "react";
-import {
-    RiTimeFill,
-    RiLinkedinBoxFill,
-    RiGithubFill,
-    RiMailFill,
-    RiInstagramFill
-} from '@remixicon/react';
+import React from 'react'
 
+const Chatbot = () => {
+    const [input, setInput] = useState("");
+const [messages, setMessages] = useState([]);
 
-const Contact = () => {
+const sendMessage = async () => {
+    if (!input.trim()) return;
 
-    const gradient = "bg-gradient-to-r from-[#1db6f8] via-[#14B8A6] to-[#8B5CF6] bg-clip-text text-transparent"
+    const userInput = input;
 
-    const input = "bg-transparent w-full py-4 px-2 border-b border-[#1db6f8]/50 outline-none"
+    setMessages((prev) => [
+        ...prev,
+        { role: "user", text: userInput }
+    ]);
 
-    const formGrp = "relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[4px] after:w-0 after:bg-gradient-to-r after:from-[#1db6f8] after:via-[#14B8A6] after:to-[#8B5CF6] after:transition-all after:duration-400 after:ease focus-within:after:w-full"
+    setInput("");
 
+    try {
+        const response = await fetch("http://127.0.0.1:5000/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message: userInput }),
+        });
 
-    const [formData, setFormData] = useState({
+        const data = await response.json();
 
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
+        setMessages((prev) => [
+            ...prev,
+            { role: "bot", text: data.reply }
+        ]);
 
-    })
-
-
-const handleChange = (e)=>{
-
-    console.log(e.target.name, e.target.value);
-
-    setFormData({
-        ...formData,
-        [e.target.name]: e.target.value
-    });
-
-}
-
-
-    const sendMessage = async (e) => {
-
-        e.preventDefault();
-
-         console.log("Sending Data:", formData);
-
-        try {
-
-console.log(formData)
-            const response = await fetch(
-
-                "http://localhost:5000/send-mail",
-
-                {
-
-                    method: "POST",
-
-                    headers: {
-
-                        "Content-Type": "application/json"
-
-                    },
-
-
-                    body: JSON.stringify(formData)
-
-                }
-
-            )
-
-
-            const data = await response.json();
-
-
-
-            if (data.success) {
-
-
-                alert("Message Sent Successfully 🚀")
-
-
-                setFormData({
-
-                    name: "",
-                    email: "",
-                    subject: "",
-                    message: ""
-
-                })
-
-
-            }
-
-
-
-        } catch (error) {
-
-            console.log(error)
-
-            alert("Something went wrong")
-
-        }
-
-
+    } catch (error) {
+        console.error(error);
     }
+};
+  return (
+    <div className='flex flex-col items-center justify-center text-center w-full mt-24 px-4 animate-fadeIn'>
 
+    <h1 className='text-3xl md:text-4xl lg:text-5xl font-medium'>
+        ChatBot <span className={gradient}>Assistant</span>
+    </h1>
 
+    <p className='text-slate-400 mt-6 text-sm md:text-base max-w-3xl'>
+        A modern AI chatbot built to understand user queries, generate accurate responses,
+        offer real-time assistance, and create seamless conversational interactions effortlessly.
+    </p>
 
+    <div className='flex justify-center items-center w-full mt-16'>
 
+        <div className='w-full max-w-4xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl'>
 
-    return (
+            {/* Header */}
+            <div className='flex justify-between items-center border-b border-white/10 p-5'>
 
-        <div className='animate-fadeIn w-full flex justify-center items-center mt-12 px-4'>
+                <div className='flex items-center gap-3'>
+                    <div className='w-3 h-3 rounded-full bg-green-500 animate-pulse'></div>
+                    <span className='text-lg font-semibold'>
+                        AI Assistant
+                    </span>
+                </div>
 
-            <div className='flex flex-col justify-center items-center gap-y-12 text-center w-full max-w-7xl m-12'>
+                <span className='text-sm text-slate-400'>
+                    By SHAYANPROG
+                </span>
 
+            </div>
 
-                <div className='py-2 px-4 rounded-2xl border border-(--primary-color) bg-blue-950 animate-float w-fit text-(--primary-color) font-medium'>
+            {/* Chat Area */}
+            <div className='h-[450px] flex flex-col justify-center items-center p-8'>
 
-                    Let's Talk
+                <div className='text-6xl mb-6'>
+                    🤖
+                </div>
+
+                <h2 className='text-2xl font-semibold'>
+                    Welcome to AI Assistant
+                </h2>
+
+                <p className='text-slate-400 mt-3 max-w-md'>
+                    Ask anything about coding, web development,
+                    JavaScript, React, portfolio projects,
+                    or learning resources.
+                </p>
+
+                {/* Suggestion Cards */}
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10 w-full max-w-2xl'>
+
+                    <button className='bg-white/5 border border-white/10 rounded-xl p-4 text-left hover:border-(--primary-color) hover:translate-y-[-4px] transition-all duration-300'>
+                        🚀 Build a React Portfolio
+                    </button>
+
+                    <button className='bg-white/5 border border-white/10 rounded-xl p-4 text-left hover:border-(--primary-color) hover:translate-y-[-4px] transition-all duration-300'>
+                        ⚡ Learn JavaScript Faster
+                    </button>
+
+                    <button className='bg-white/5 border border-white/10 rounded-xl p-4 text-left hover:border-(--primary-color) hover:translate-y-[-4px] transition-all duration-300'>
+                        🎨 UI Design Ideas
+                    </button>
+
+                    <button className='bg-white/5 border border-white/10 rounded-xl p-4 text-left hover:border-(--primary-color) hover:translate-y-[-4px] transition-all duration-300'>
+                        📚 Study Plan
+                    </button>
 
                 </div>
 
-
-
-                <h1 className='text-3xl md:text-4xl'>
-
-                    Can we unpack this <span className={gradient}>together</span>?
-
-                </h1>
-
-
-
-                <p className='text-slate-400'>
-
-                    Have a project in mind or just want to say hi? I'd love to hear
-
-                    <br className='hidden sm:block' />
-
-                    from you.
-
-                </p>
-
-
-
-
-
-                <form
-                    onSubmit={sendMessage}
-
-                    className='flex flex-col gap-y-6 bg-(--card-color) p-6 md:p-8 lg:p-12 relative before:content-[""] before:absolute before:top-0 before:left-0 before:h-[4.5px] before:bg-linear-to-r before:from-transparent before:via-[#1db6f8] before:to-transparent before:w-full rounded-2xl border border-(--primary-color) w-full max-w-[650px]'
-                >
-
-
-
-
-
-                    <div className={formGrp}>
-
-                        <input
-
-                            className={input}
-
-                            required
-
-                            name="name"
-
-                            value={formData.name}
-
-                            onChange={handleChange}
-
-                            placeholder="Your Name"
-
-                            type="text"
-
-                        />
-
-                    </div>
-
-
-
-
-
-                    <div className={formGrp}>
-
-                        <input
-
-                            className={input}
-
-                            required
-
-                            name="email"
-
-                            value={formData.email}
-
-                            onChange={handleChange}
-
-                            placeholder="Your Email"
-
-                            type="email"
-
-                        />
-
-                    </div>
-
-
-
-
-
-                    <div className={formGrp}>
-
-                        <input
-
-                            className={input}
-
-                            name="subject"
-
-                            value={formData.subject}
-
-                            onChange={handleChange}
-
-                            placeholder="Subject (Optional)"
-
-                            type="text"
-
-                        />
-
-                    </div>
-
-
-
-
-
-                    <div className={formGrp}>
-
-                        <textarea
-
-                            className={input}
-
-                            name="message"
-
-                            value={formData.message}
-
-                            onChange={handleChange}
-
-                            placeholder="Your Message"
-
-                        />
-
-                    </div>
-
-
-
-
-
-                    <button
-
-                        type="submit"
-
-                        className='bg-(--primary-color) py-3 w-full mt-6 rounded-xl font-black cursor-pointer hover:scale-102 transition-all duration-400 ease hover:shadow-[1px_1px_15px_var(--primary-color)]'
-
-                    >
-
-                        Send Message
-
+            </div>
+
+            {/* Input Area */}
+            <div className='border-t border-white/10 p-4'>
+
+                <div className='flex items-center gap-3 bg-black/20 rounded-xl p-2'>
+
+                   <input
+    type="text"
+    value={input}
+    onChange={(e) => setInput(e.target.value)}
+    onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+    placeholder="Ask anything..."
+    className="flex-1 bg-transparent outline-none px-3"
+/>
+
+                    <button className='bg-(--primary-color) text-black px-5 py-2 rounded-lg font-semibold hover:scale-105 transition-all duration-300'>
+                        Send
                     </button>
 
-
-
-                </form>
-
-
-
-
+                </div>
 
             </div>
 
         </div>
 
+    </div>
 
-    )
-
+</div>
+  )
 }
 
-
-export default Contact
+export default Chatbot
