@@ -1,0 +1,136 @@
+@import 'tailwindcss';
+
+:root {
+    --bg-color: #120f23;
+    --card-color: #18283450;
+    --primary-color: #1db6f8;
+    --secondary-color: #14B8A6;
+    --text-color: White;
+}
+
+html,
+body {
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+@theme {
+    --animate-float: float 5s ease-in-out infinite;
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+
+    --animate-fadeIn: fadeIn 1s ease-in-out forwards;
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    --animate-jello: jello 0.9s both;
+
+    @keyframes jello {
+        0% {
+            transform: scale3d(1, 1, 1, );
+        }
+
+        30% {
+            transform: scale3d(1.25, 0.75, 1);
+        }
+
+        40% {
+            transform: scale3d(0.75, 1.25, 1);
+        }
+
+        50% {
+            transform: scale3d(1.15, 0.85, 1);
+        }
+
+        65% {
+            transform: scale3d(.95, 1.05, 1);
+        }
+
+        75% {
+            transform: scale3d(1.05, .95, 1);
+        }
+
+        100% {
+            transform: scale3d(1, 1, 1);
+        }
+    }
+
+    --animate-Ring1: rotateRing 20s linear infinite;
+    --animate-Ring2: rotateRing 15s linear infinite reverse;
+    --animate-Ring3: rotateRing 10s linear infinite;
+
+
+    @keyframes rotateRing {
+        0%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(360deg);
+        }
+    }
+
+    --animate-fadeIn2: fadeIn2 0.5s ease-in-out forwards;
+
+    @keyframes fadeIn2 {
+        from{
+            opacity: 0;
+            transform: translateY(0); 
+        }
+        to{
+            opacity: 1;
+            transform: translateY(-20px);
+        }
+    }
+
+    --animate-fadeOut: fadeOut 0.5s ease-in-out;
+
+    @keyframes fadeOut {
+        from{
+            opacity: 1;
+            transform: translateY(-20px);
+        }
+        to{
+            opacity: 0;
+            transform: translateY(0);
+        }
+    }
+
+    --animate-slide: slide 1s ease-in-out;
+
+    @keyframes slide {
+        from:active{
+            width: 0;
+    }
+    to:active{
+        width: 100%;
+    }
+}
+}
+/* #line{
+    background: linear-gradient(45deg, transparent,  #1db6f8, #14B8A6, transparent );
+    height: 2px;
+    width: 100%;
+} */
