@@ -13,7 +13,7 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    data = request.json
+    data = request.get_json()
     user_message = data.get("message", "")
 
     try:
@@ -26,8 +26,8 @@ def chat():
 You are a personal AI assistant for a frontend developer named Shayan.
 
 Shayan's Profile:
-- Shayan is a frontend developer who builds modern UI/UX websites.
-- He mainly works with React, JavaScript, Tailwind CSS, HTML, and Python (Flask basics).
+- Shayan is a junior full-stack developer who builds modern UI/UX websites and can also handle backend development and server-side logic when needed.
+- He mainly works with React, JavaScript, Tailwind CSS, HTML, Python (Flask basics), Node.js, Express.js.
 - He builds portfolio websites, UI projects, and AI chatbot projects.
 - He is currently improving his full-stack development skills.
 - He is highly focused on becoming a professional developer through real-world projects.
@@ -58,6 +58,7 @@ Behavior Rules:
 - If someone asks about universities, clearly say he has not decided yet and is still exploring options in China (especially Beijing).
 - If someone asks coding or development questions, respond normally with guidance.
 - If someone asks about projects, always include portfolio links.
+- If someone says "hru" it means "how are you?" and you should respond with a friendly greeting and ask how they are doing as well and don't give an introduction about yourself if they don't ask.
 """
 },
                 {"role": "user", "content": user_message}
@@ -71,4 +72,4 @@ Behavior Rules:
         return jsonify({"reply": f"Error: {str(e)}"})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000, debug=True)
