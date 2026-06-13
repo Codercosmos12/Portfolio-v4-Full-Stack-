@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 
 const Contact = () => {
-
+const [loading, setLoading] = useState(false);
  const gradient = "bg-gradient-to-r from-[#1db6f8] via-[#14B8A6] to-[#8B5CF6] bg-clip-text text-transparent"
     const footerLinks = "text-gray-400 transition-all duration-400 ease hover:text-white font-medium"
 
@@ -29,7 +29,7 @@ const Contact = () => {
         ]);
 
         setInput("");
-
+setLoading(true);
         try {
             const response = await fetch("http://127.0.0.1:5000/chat", {
                 method: "POST",
@@ -49,6 +49,7 @@ const Contact = () => {
         } catch (error) {
             console.error(error);
         }
+        setLoading(false);
     };
 
 
@@ -98,10 +99,15 @@ const Contact = () => {
                         )}
 
                         {messages.map((msg, i) => (
+                        {loading && (
+  <div className="mr-auto bg-white/10 text-white p-2 rounded-lg text-sm">
+    typing...
+  </div>
+)}
                             <div
                                 key={i}
                                 className={`max-w-[70%] p-3 rounded-lg text-sm ${msg.role === "user"
-                                        ? "ml-auto bg-blue-500 text-white"
+                                        ? "ml-auto bg-blue-500 text-white text-medium tracking-wide leading-relaxed"
                                         : "mr-auto bg-white/10 text-white"
                                     }`}
                             >
