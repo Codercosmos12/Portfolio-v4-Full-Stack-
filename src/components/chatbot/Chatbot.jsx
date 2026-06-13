@@ -1,6 +1,7 @@
-import React {useState} from 'react'
+import React, {useState} from 'react'
 
 const Chatbot = () => {
+    const gradient = "bg-gradient-to-r from-[#1db6f8] via-[#14B8A6] to-[#8B5CF6] bg-clip-text text-transparent";
     const [input, setInput] = useState("");
 const [messages, setMessages] = useState([]);
 
@@ -122,9 +123,12 @@ const sendMessage = async () => {
     className="flex-1 bg-transparent outline-none px-3"
 />
 
-                    <button className='bg-(--primary-color) text-black px-5 py-2 rounded-lg font-semibold hover:scale-105 transition-all duration-300'>
-                        Send
-                    </button>
+                   <button
+  onClick={sendMessage}
+  className='bg-(--primary-color) text-black px-5 py-2 rounded-lg font-semibold hover:scale-105 transition-all duration-300'
+>
+  Send
+</button>
 
                 </div>
 
