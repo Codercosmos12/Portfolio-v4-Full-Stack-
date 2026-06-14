@@ -19,10 +19,10 @@ CORS(app, resources={
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-@app.route("/chat", methods=["POST"])
+@app.route("/chat", methods=["POST", "OPTIONS"])
 def chat():
-    data = request.json
-    user_message = data.get("message", "")
+    if request.method == "OPTIONS":
+        return jsonify({}), 200
 
     try:
         response = client.chat.completions.create(
