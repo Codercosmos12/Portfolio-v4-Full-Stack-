@@ -7,7 +7,15 @@ from groq import Groq
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={
+    r"/*": {
+        "origins": [
+            "https://xuan-dev-v4-full-stack-d3ki.vercel.app"
+        ],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
