@@ -19,39 +19,43 @@ const [loading, setLoading] = useState(false);
     const [messages, setMessages] = useState([]);
 
     const sendMessage = async () => {
-        if (!input.trim()) return;
+  if (!input.trim()) return;
 
-        const userInput = input;
+  const userInput = input;
 
-        setMessages((prev) => [
-            ...prev,
-            { role: "user", text: userInput }
-        ]);
+  setMessages((prev) => [
+    ...prev,
+    { role: "user", text: userInput },
+    { role: "bot", text: "typing..." }
+  ]);
 
-        setInput("");
-setLoading(true);
-        try {
-            const response = await fetch("https://portfolio-v4-full-stack-production.up.railway.app/chat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ message: userInput }),
-            });
+  setInput("");
+  setLoading(true);
 
-            const data = await response.json();
+  try {
+    const response = await fetch("https://portfolio-v4-full-stack-production.up.railway.app/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userInput }),
+    });
 
-            setMessages((prev) => [
-                ...prev,
-                { role: "bot", text: data.reply }
-            ]);
+    const data = await response.json();
 
-        } catch (error) {
-            console.error(error);
-        }
-        setLoading(false);
-    };
+    setMessages((prev) => {
+      const updated = [...prev];
+      updated[updated.length - 1] = {
+        role: "bot",
+        text: data.reply
+      };
+      return updated;
+    });
 
+  } catch (error) {
+    console.error(error);
+  }
+
+  setLoading(false);
+};
 
     return (
 
