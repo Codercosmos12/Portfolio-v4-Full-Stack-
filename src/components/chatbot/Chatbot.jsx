@@ -99,11 +99,6 @@ setLoading(true);
                         )}
 
                         {messages.map((msg, i) => (
-                        {loading && (
-  <div className="mr-auto bg-white/10 text-white p-2 rounded-lg text-sm">
-    typing...
-  </div>
-)}
                             <div
                                 key={i}
                                 className={`max-w-[70%] p-3 rounded-lg text-sm ${msg.role === "user"
@@ -114,6 +109,12 @@ setLoading(true);
                                 {msg.text}
                             </div>
                         ))}
+
+                        {loading && (
+                            <div className="mr-auto bg-white/10 text-white p-2 rounded-lg text-sm">
+                                typing...
+                            </div>
+                        )}
 
                     </div>
                     {/* Input Area */}
