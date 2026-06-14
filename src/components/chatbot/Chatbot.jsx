@@ -31,7 +31,7 @@ const [loading, setLoading] = useState(false);
         setInput("");
 setLoading(true);
         try {
-            const response = await fetch("https://portfolio-v4-full-stack-production.up.railway.app", {
+            const response = await fetch("https://portfolio-v4-full-stack-production-07b7.up.railway.app/chat", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
