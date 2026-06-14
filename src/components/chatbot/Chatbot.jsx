@@ -31,7 +31,7 @@ const [loading, setLoading] = useState(false);
         setInput("");
 setLoading(true);
         try {
-            const response = await fetch("http://10.230.23.130:8080", {
+            const response = await fetch("https://portfolio-v4-full-stack-production.up.railway.app/chat", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
