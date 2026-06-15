@@ -86,7 +86,10 @@ Behavior Rules:
         return jsonify({"reply": reply})
 
     except Exception as e:
-        return jsonify({"reply": f"Error: {str(e)}"})
+    print("ERROR:", e)
+    return jsonify({
+        "reply": "Something went wrong on the server."
+    }), 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
