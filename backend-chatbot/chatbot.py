@@ -24,7 +24,7 @@ if not api_key:
 
 client = Groq(api_key=api_key)
 
-@app.route("/chat", methods=["POST", "OPTIONS"])
+@app.route("/", methods=["POST", "OPTIONS"])
 def chat():
 
     if request.method == "OPTIONS":
