@@ -34,7 +34,7 @@ const [loading, setLoading] = useState(false);
 
   try {
  const response = await fetch(
-  "https://portfolio-v-4-full-stack--ayanshayan507.replit.app",
+  "portfolio-v4-full-stack-production.up.railway.app",
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },
