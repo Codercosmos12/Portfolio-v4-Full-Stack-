@@ -26,8 +26,12 @@ client = Groq(api_key=api_key)
 
 @app.route("/chat", methods=["POST", "OPTIONS"])
 def chat():
+
     if request.method == "OPTIONS":
         return jsonify({}), 200
+
+    data = request.get_json()
+    user_message = data.get("message", "")
 
     try:
         response = client.chat.completions.create(
