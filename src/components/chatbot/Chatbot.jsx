@@ -34,7 +34,7 @@ const [loading, setLoading] = useState(false);
 
   try {
  const response = await fetch(
-  "https://portfolio-v4-full-stack-production.up.railway.app/chat",
+  "https://chatbot-production-0c57.up.railway.app/",
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },
