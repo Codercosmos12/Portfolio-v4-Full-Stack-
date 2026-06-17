@@ -125,29 +125,24 @@ const [loading, setLoading] = useState(false);
 
                     </div>
                     {/* Input Area */}
-                    <div className='border-t border-white/10 p-4'>
-
-                        <div className='flex items-center gap-3 bg-black/20 rounded-xl p-2'>
-
-                            <input
-                                type="text"
-                                value={input}
-                                onChange={(e) => setInput(e.target.value)}
-                                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                                placeholder="Ask anything..."
-                                className="flex-1 bg-transparent outline-none px-3"
-                            />
-
-                            <button
-                                onClick={sendMessage}
-                                className='bg-(--primary-color) text-black px-5 py-2 rounded-lg font-semibold hover:scale-105 transition-all duration-300'
-                            >
-                                Send
-                            </button>
-
-                        </div>
-
-                    </div>
+                   <div className='border-t border-white/10 p-4'>
+    <div className='flex items-center gap-3 bg-black/20 rounded-xl p-2'>
+        <input
+            type="text"
+            className="bg-transparent w-full p-2 outline-none text-white text-sm"
+            placeholder="Type your message..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && sendMessage()} 
+        />
+        <button 
+            onClick={sendMessage}
+            className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+        >
+            Send
+        </button>
+    </div>
+</div>
 
                 </div>
 
