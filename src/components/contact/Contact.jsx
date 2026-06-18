@@ -29,7 +29,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://your-node.onrender.com/send-email", {
+      const response = await fetch("https://mail-send-backend-production.up.railway.app/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
