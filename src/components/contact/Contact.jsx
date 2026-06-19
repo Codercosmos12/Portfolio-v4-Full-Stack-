@@ -26,6 +26,7 @@ const Contact = () => {
   };
 
   const sendMessage = async (e) => {
+        console.log("Button clicked");
     e.preventDefault();
 
     try {
