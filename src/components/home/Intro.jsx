@@ -105,8 +105,8 @@ const footerLinks = "text-gray-400 transition-all duration-400 ease hover:text-w
             Frontend Developer specializing in creating fast, responsive, and visually engaging web applications. With a strong focus on clean code, performance optimization, and exceptional user experience, I build modern digital products that combine functionality, accessibility, and elegant design across all screen sizes.
           </p>
           <div className='mt-6 flex flex-wrap justify-center lg:justify-start items-center gap-4'>
-            <a
-              href="#contact"
+            <Link
+              to="/components/contact"
               className="
     relative inline-flex items-center justify-center
     w-25 h-8
@@ -126,9 +126,9 @@ const footerLinks = "text-gray-400 transition-all duration-400 ease hover:text-w
     before:z-0
     hover:text-black hover:border-none
     hover:before:scale-x-100
-  "><span className="relative z-10">Contact Me</span></a>
+  "><span className="relative z-10">Contact Me</span></Link>
 
-            <a href='#' className='scale-100   py-1.5 px-4 rounded-8 border-none bg-(--primary-color)   text-white cursor-pointer font-medium text-[14px]   rounded-full hover:animate-jello'>Chatbot</a>
+            <Link to="/components/chatbot" className='scale-100   py-1.5 px-4 rounded-8 border-none bg-(--primary-color)   text-white cursor-pointer font-medium text-[14px]   rounded-full hover:animate-jello'>Chatbot</Link>
           </div>
         </div>
 
