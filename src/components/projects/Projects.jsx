@@ -164,7 +164,7 @@ const Projects = () => {
             {/* GitHub CTA Button */}
             <a
                 className='flex border border-(--primary-color) py-4 px-6 sm:py-5 sm:px-8 lg:py-6 lg:px-10 text-base sm:text-lg lg:text-xl gap-2 justify-center items-center rounded-2xl mt-10 sm:mt-16 lg:mt-20 hover:bg-(--primary-color) hover:text-black font-extrabold transition-all duration-400 ease hover:translate-y-[-6px] hover:scale-103 w-full sm:w-auto'
-                href="#"
+                href="https://github.com/Codercosmos12/"
             >
                 <RiGithubFill /> View All on Github
             </a>
